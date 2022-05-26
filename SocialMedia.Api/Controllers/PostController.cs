@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using SocialMedia.Infrastructure.Repositories;
 
 namespace SocialMedia.Api.Controllers
 {
@@ -11,7 +11,8 @@ namespace SocialMedia.Api.Controllers
         [HttpGet]
         public IActionResult GetPosts()
         {
-            return Ok(null);
+            var posts = new PostRepositorie().GetPosts();
+            return Ok(posts);
         }
     }
 }
