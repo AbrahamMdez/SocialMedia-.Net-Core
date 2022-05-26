@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using SocialMedia.Core.Interfaces;
 using SocialMedia.Infrastructure.Repositories;
 
 namespace SocialMedia.Api.Controllers
@@ -8,10 +10,17 @@ namespace SocialMedia.Api.Controllers
 
     public class PostController : ControllerBase
     {
+        private readonly IPostRepository _postRepository;
+
+        public PostController(IPostRepository postRepository)
+        {
+            _postRepository = postRepository;
+        }
+
         [HttpGet]
         public IActionResult GetPosts()
         {
-            var posts = new PostRepositorie().GetPosts();
+            var posts = _postRepository.GetPosts();
             return Ok(posts);
         }
     }
